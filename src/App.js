@@ -201,19 +201,25 @@ export default function App() {
             >
               Delete
             </button>
-            <label style={{ display: "block", marginBottom: 10 }}>
+            <button style={styles.controlButton}>
               Upload File
               <input
                 type="file"
-                style={{ display: "none" }}
+                style={styles.controlButton}
                 onChange={(e) => {
                   const uploadedFiles = Array.from(e.target.files);
-                  const newFiles = [...myFiles, ...uploadedFiles];
-                  setMyFiles(newFiles);
+                  const newFiles = uploadedFiles.map((file) => ({
+                    id: Math.random().toString(36).substr(2, 9),
+                    name: file.name,
+                    type: file.type,
+                    size: file.size,
+                    path: URL.createObjectURL(file),
+                  }));
+                  setMyFiles([...myFiles, ...newFiles]);
                 }}
                 multiple
               />
-            </label>
+            </button>
           </div>
 
           <div style={styles.fileContainer}>
