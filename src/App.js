@@ -55,7 +55,6 @@ export default function App() {
           <div style={styles.modalContent}>
             <div style={styles.modalHeader}>
               <p style={{ fontWeight: "bold" }}>Files Breakdown</p>
-              // Button for displaying the file breakdown modal
               <button
                 style={styles.closeButton}
                 onClick={() => setShowChartModal(false)}
@@ -137,7 +136,6 @@ export default function App() {
             <p>{selectedFile ? selectedFile.path : filePath}</p>
           </div>
           <div style={styles.controlTools}>
-            // Search input for filtering files by name
             <input
               type="text"
               placeholder="Search files..."
@@ -150,7 +148,7 @@ export default function App() {
                 setMyFiles(newFiles);
               }}
             />
-            // Button for renaming selected file
+
             <button
               style={styles.controlButton}
               onClick={() => {
@@ -171,7 +169,6 @@ export default function App() {
             >
               Rename
             </button>
-            // Button for displaying the file breakdown modal
             <button
               style={styles.controlButton}
               onClick={() => {
@@ -180,7 +177,6 @@ export default function App() {
             >
               Files Breakdown
             </button>
-            // Button for downloading selected file
             <button
               style={styles.controlButton}
               onClick={() => {
@@ -191,7 +187,6 @@ export default function App() {
             >
               Download
             </button>
-            // Button for deleting selected file
             <button
               style={styles.controlButton}
               onClick={() => {
@@ -206,28 +201,27 @@ export default function App() {
             >
               Delete
             </button>
-            // Input for uploading files
-            <input style={styles.controlButton}>
+            <button style={styles.controlButton}>
               Upload File
               <input
                 type="file"
                 style={styles.controlButton}
                 onChange={(e) => {
-                  const uploadedFiles = Array.from(e.target.files);
-                  uploadedFiles.forEach((file) => {
-                    const newFile = {
-                      id: Math.random().toString(36).substr(2, 9),
-                      name: file.name,
-                      type: file.type,
-                      size: file.size,
-                      path: URL.createObjectURL(file),
-                    };
-                    setMyFiles((prevFiles) => [...prevFiles, newFile]);
-                  });
+                   const uploadedFiles = Array.from(e.target.files);
+                   uploadedFiles.forEach((file) => {
+                     const newFile = {
+                       id: Math.random().toString(36).substr(2, 9),
+                       name: file.name,
+                       type: file.type,
+                       size: file.size,
+                       path: URL.createObjectURL(file),
+                     };
+                     setMyFiles((prevFiles) => [...prevFiles, newFile]);
+                   });
                 }}
                 multiple
               />
-            </input>
+            </button>
           </div>
 
           <div style={styles.fileContainer}>
